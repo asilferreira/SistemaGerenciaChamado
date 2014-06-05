@@ -112,7 +112,7 @@
 				</tr>
 				<tr>
 
-					<td colspan="2">Descri??o do Chamado<br><fieldset> <p><label>${param.descricao}</label></fieldset>
+					<td colspan="2">Descrição do Chamado<br><fieldset> <p><label>${param.descricao}</label></fieldset>
 					</td>
 				</tr>
 			</table>
@@ -149,7 +149,7 @@
 							cols="40" name="detal"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2">Solu??o<br> <textarea rows="5" cols="40"
+					<td colspan="2">Solução<br> <textarea rows="5" cols="40"
 							name="soluc"></textarea>*
 					</td>
 				</tr>
