@@ -5,15 +5,40 @@
 <html>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Home</title>
+<link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 	<form action="Logar" method="post">
-		<p>Usuario</p>
-		<input type="text" name="usuario" size="20">
-		<p>Senha</p>
-		<input type="password" name="senha"> <input type="submit"
-			value="Efetuar Login">
+
+		<div id="login-box">
+			<div id="login-box-interno">
+				<div id="login-box-label">
+					Usuário e Senha
+
+					<div class="input-div id="usuario" >
+						<input type="text" name="usuario" />
+
+					</div>
+
+					<div class="input-div id="input-senha">
+						<input type="password" name="senha" />
+					</div>
+
+					<div id="botoes"></div>
+
+					<div id="botao">
+						<input type="submit" class="botao" value="login">
+					</div>
+
+					<div id="lembrar-senha">
+						<input type="checkbox" /> Lembrar minha senha
+					</div>
+
+
+				</div>
+			</div>
+		</div>
 	</form>
 </body>
 </html>

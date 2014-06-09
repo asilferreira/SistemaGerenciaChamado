@@ -7,6 +7,19 @@ function cadchamado(){
 	document.forms.abrechamado.submit();
 }
 
+
+
+function validacao(){
+	if(document.forms.abrechamado.value=="") {
+		
+		alert("Por favor, Preencha o campo nome");
+		document.abrechamado.focus();
+		return false;
+
+	}
+	
+}
+
 function txtBoxFormat(objeto, sMask, evtKeyPress) {
 	var i, nCount, sValue, fldLen, mskLen, bolMask, sCod, nTecla;
 

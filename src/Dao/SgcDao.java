@@ -16,7 +16,6 @@ import Beans.Grupo;
 import Beans.Servico;
 import Jdbc.ConnectionFactory;
 
-
 public class SgcDao {
 
 	private Connection connection;
