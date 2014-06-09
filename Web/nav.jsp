@@ -13,12 +13,16 @@
 				<li><a href="inicio.jsp">Inicio</a></li>
 				<li><a href="#">Chamados</a>
 					<ul>
-						<li>
 						<li><a href="chamados.jsp">Meus Chamados</a>
 						<li><a href="novochamado.jsp">Novo Chamado</a></li>
 					</ul></li>
 				<li><a href="cadastrausuario.jsp">Cadastrar</a></li>
-				<li><a href="#">Relatorio</a></li>
+				<li><a href="#">Relatorio</a>
+				<ul>
+					<li><a href="#">Relatorio 1</a></li>
+					<li><a href="#">Relatorio 2</a></li>
+					<li><a href="#">Relatorio 3</a></li>
+				</ul></li>
 				<li><a href="Logout">Logoff</a></li>
 			</ul>
 		</div>
