@@ -19,6 +19,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:import url="nav.jsp" />
 	<div id="container">
 		<div id="content">
 			<div class="middle-unique-col">

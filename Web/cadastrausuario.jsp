@@ -15,25 +15,8 @@
 <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
-<div id="top">
-<div id="nav">
-		<ul>
-			<li><a href="inicio.jsp">Inicio</a></li>
-			<li><a href="#">Chamados</a>
-				<ul>
-					<li>
-						<li><a href="chamados.jsp">Meus Chamados</a>
-						<li><a href="novochamado.jsp">Novo Chamado</a>
-					</li>
-				</ul>
-			
-			</li>
-			<li><a href="cadastrausuario.jsp">Cadastrar</a></li>
-			<li><a href="#">Relatorio</a></li>
-			<li><a href="index.jsp">Logoff</a></li>
-		</ul>
-	</div>
-</div>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:import url="nav.jsp" />
 	<div id="container">
 		<div id="content">
 			<div class="middle-unique-col">
