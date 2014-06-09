@@ -151,7 +151,7 @@ input {
 /*     width: 30%; */
 /*     height: 22px; */
     border: 1px solid #ccc;
-    text-transform: uppercase;
+/*  text-transform: uppercase; */
     font: 11px Verdana, Geneva, sans-serif;
     color: #666;
 /*     margin: 0 0 3px 0; */
@@ -193,7 +193,7 @@ fieldset {
 }
 
 .uppercase {
-    text-transform: uppercase;
+   text-transform: uppercase;
 }
 
 .lowercase{
