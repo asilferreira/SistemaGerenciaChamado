@@ -23,9 +23,9 @@
 <div id="container">
 		<div id="content">
 			<div class="middle-unique-col">
-<h1>Tickts Abertos</h1>
+<h1>Tickts Por Tempo de Execução</h1>
 <%@include file="data.jsp" %>
-<p>Chamados com Status Aberto</p>
+<p>Chamados com Status Aberto e suspenso</p>
 <div id="formWrapper">
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
