@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import Beans.Chamado;
@@ -270,7 +269,6 @@ public class SgcDao {
 	}
 
 	public List<Funcionario> prenomes() {
-		// List<String> func = new ArrayList<>();
 		List<Funcionario> func = new ArrayList<Funcionario>();
 		try {
 			String sql = "select * from funcionario";
@@ -280,6 +278,7 @@ public class SgcDao {
 				Funcionario funcionario = new Funcionario();
 				funcionario.setMatricula_1(rs.getInt("Id_funcionario"));
 				funcionario.setNome1(rs.getString("nome"));
+				funcionario.setLogin(rs.getString("login"));
 				func.add(funcionario);
 			}
 			rs.close();
@@ -351,5 +350,87 @@ public class SgcDao {
 		}
 		return result;
 	}
+
+
+
+public List<Chamado> getChamadoAberto() {
+	List<Chamado> chamados = new ArrayList<>();
+	try {
+		String sql = "call abertos()";
+		PreparedStatement stmt = this.connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+
+			// criando o objeto Contato 
+			
+			Chamado chamado = new Chamado();
+
+			chamado.setIdChamado(rs.getInt("id"));
+			chamado.func.setNome2(rs.getString("usuario"));
+			chamado.func.setEmail(rs.getString("email"));
+			chamado.func.setRamal(rs.getString("ramal"));
+			chamado.serv.setNomeServico(rs.getString("servico"));
+			chamado.grupo.setNomeGrupo(rs.getString("grupo"));
+			chamado.serv.setSLA(rs.getString("sla"));
+			chamados.add(chamado);
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return chamados;
+}
+
+public List<Chamado> getChamadoSolicitante(int id) {
+	List<Chamado> chamados = new ArrayList<>();
+	try {
+		String sql = "CALL LISTAPORSOLUCAO(?)";
+		PreparedStatement stmt = this.connection.prepareStatement(sql);
+		stmt.setInt(1, id);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+
+			// criando o objeto Contato
+			Chamado cmd = new Chamado();
+			cmd.setIdChamado(rs.getInt("id"));
+			cmd.func.setNome1(rs.getString("funcionario"));
+			cmd.serv.setNomeServico(rs.getString("servico"));
+			cmd.grupo.setNomeGrupo(rs.getString("grupo"));
+			cmd.setDescricao(rs.getString("descricao"));
+			cmd.setDetalhe(rs.getString("causa"));
+			cmd.setSolucao(rs.getString("solucao"));
+			chamados.add(cmd);
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return chamados;
+}
+
+public List<Chamado> getChamadoData() {
+	List<Chamado> chamados = new ArrayList<>();
+	try {
+		String sql ="call pdata()";
+		PreparedStatement stmt = this.connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+
+			// criando o objeto Contato 
+			
+			Chamado chamado = new Chamado();
+
+			chamado.setIdChamado(rs.getInt("id"));
+			chamado.func.setNome2(rs.getString("usuario"));
+			chamado.func.setEmail(rs.getString("email"));
+			chamado.func.setRamal(rs.getString("ramal"));
+			chamado.serv.setNomeServico(rs.getString("servico"));
+			chamado.setStatus(rs.getString("estado"));
+			chamado.setDataAbertura(rs.getDate("diferenca"));
+			chamados.add(chamado);
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return chamados;
+}
 
 }

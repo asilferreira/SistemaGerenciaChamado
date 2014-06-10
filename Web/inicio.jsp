@@ -7,17 +7,12 @@
 	if (usuario == null || idU == 0) {
 %>
 <script>
-	alert('Usuario e/ou senha incorretos ...');
+	alert('Erro na Sessão do Logon ...\nTente novamente ...');
 	window.location.assign("index.jsp");
 </script>
 <%
 	}
-	
-	SgcDao dao = new SgcDao();
-	
-	List<Chamado> cmdos = new ArrayList<Chamado>();
-	cmdos = dao.getListaChamado(idU);
-%>
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

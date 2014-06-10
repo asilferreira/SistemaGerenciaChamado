@@ -8,7 +8,7 @@
         SgcDao dao = new SgcDao();
         func = dao.prenomes();
         for(Funcionario f1 : func){
-        String nome = f1.getNome1();
+        String nome = f1.getLogin();
 		json.put("name",nome);
         json.put("value",nome);
         jsonArr.add(json);

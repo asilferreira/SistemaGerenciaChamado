@@ -14,7 +14,6 @@
 	}
 	
 	SgcDao dao = new SgcDao();
-	
 	List<Chamado> cmdos = new ArrayList<Chamado>();
 	cmdos = dao.getListaChamado(idU);
 %>

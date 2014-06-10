@@ -1,12 +1,12 @@
 package Beans;
 
 import java.sql.Date;
-import java.util.Calendar;
+import java.sql.Timestamp;
 
 public class Chamado {
 	private int idChamado, sta;
 	private Date dataAbertura;
-	private Calendar dataFechamento;
+	private String dataFechamento;
 	public Funcionario func = new Funcionario();
 	public Grupo grupo = new Grupo();
 	public Servico serv = new Servico();
@@ -44,11 +44,11 @@ public class Chamado {
 		this.dataAbertura = dataAbertura;
 	}
 
-	public Calendar getDataFechamento() {
+	public String getDataFechamento() {
 		return dataFechamento;
 	}
 
-	public void setDataFechamento(Calendar dataFechamento) {
+	public void setDataFechamento(String dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
 
