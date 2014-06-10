@@ -19,9 +19,9 @@
 				<li><a href="cadastrausuario.jsp">Cadastrar</a></li>
 				<li><a href="#">Relatorio</a>
 				<ul>
-					<li><a href="#">Relatorio 1</a></li>
-					<li><a href="#">Relatorio 2</a></li>
-					<li><a href="#">Relatorio 3</a></li>
+					<li><a href="relatorio1.jsp">Chamados em Aberto</a></li>
+					<li><a href="relatorio2.jsp">Chamados por Executante</a></li>
+					<li><a href="relatorio3.jsp">Chamados por tempo de Execução</a></li>
 				</ul></li>
 				<li><a href="Logout">Logoff</a></li>
 			</ul>
