@@ -17,12 +17,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Chamados abertos</title>
 </head>
+
 <body>
 <%@include file="nav.jsp" %>
+<div id="container">
+		<div id="content">
+			<div class="middle-unique-col">
 <h1>Tickts Abertos</h1>
 <%@include file="data.jsp" %>
 <p>Chamados com Status Aberto</p>
-
+<div id="formWrapper">
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<th>Ticket</th><th>Usuario</th><th>Email</th><th>Ramal</th><th>Serviço</th><th>Grupo</th><th>SLA</th>
@@ -40,6 +44,6 @@
 <td><%=cmd.serv.getSLA() %></td>
 </tr>
 <%} %>
-</table>
+</table></div></div></div></div>
 </body>
 </html>
