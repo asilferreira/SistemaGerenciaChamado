@@ -59,7 +59,7 @@ chamados = dao.getChamadoSolicitante(id);
 	<div id="container">
 		<div id="content">
 			<div class="middle-unique-col">
-				<h2>Formulario 1</h2>
+				
 				<p>
 				<h1>Relatorio de Chamados Fechados por Executante</h1>
 				<%@include file="data.jsp"%>
