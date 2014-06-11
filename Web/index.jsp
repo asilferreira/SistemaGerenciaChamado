@@ -17,12 +17,12 @@
 					Usuário e Senha
 
 					<div class="input-div id="usuario" >
-						<input type="text" name="usuario" />
+						<label>Usuário: </label><input type="text" name="usuario" />
 
 					</div>
 
 					<div class="input-div id="input-senha">
-						<input type="password" name="senha" />
+						<label>Senha: </label><input type="password" name="senha" />
 					</div>
 
 					<div id="botoes"></div>

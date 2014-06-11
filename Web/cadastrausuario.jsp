@@ -26,32 +26,32 @@
 					<table class="tabela-invisivel">
 						<tr>
 							<td width="5%"><label>Nome: </td>
-							<td></label><input type="text" name="nome" /></td>
+							<td></label><input type="text" name="nome" />*</td>
 						</tr>
 						<tr>
 							<td width="5%"><label>E-mail: </td>
-							<td></label><input type="text" name="email" /></td>
+							<td></label><input type="text" name="email" />*</td>
 						</tr>
 						<tr>
 							<td width="5%"><label>Telefone: </td>
 							<td></label><input type="text" name="tel" maxlength="13"
-								onKeyPress="return txtBoxFormat(this, '(99)9999-9999', event); return apenas_numero(event);" /></td>
+								onKeyPress="return txtBoxFormat(this, '(99)9999-9999', event); return apenas_numero(event);" />*</td>
 						</tr>
 						<tr>
 							<td width="5%"><label>Ramal: </td>
-							<td></label><input type="text" name="ramal" /></td>
+							<td></label><input type="text" name="ramal" />*</td>
 						</tr>
 						<tr>
 							<td width="5%"><label>Setor: </td>
-							<td></label><input type="text" name="setor" /></td>
+							<td></label><input type="text" name="setor" />*</td>
 						</tr>
 						<tr>
 							<td width="5%"><label>Login: </td>
-							<td></label><input type="text" name="login" /></td>
+							<td></label><input type="text" name="login" />*</td>
 						</tr>
 						<tr>
 							<td width="5%"><label>Senha: </td>
-							<td></label><input type="password" name="senha" /></td>
+							<td></label><input type="password" name="senha" />*</td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="submit" name="submit"
