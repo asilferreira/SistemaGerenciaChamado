@@ -20,7 +20,7 @@
 	<div id="container">
 		<div id="content">
 			<div class="middle-unique-col">
-				<h2>Cadastro de Usuário</h2>
+				<h3>Cadastro de Usuário</h3>
 				<form id="contactform" name=form action="CadUsuario" method="post"
 					onSubmit="return validacao();">
 					<table class="tabela-invisivel">

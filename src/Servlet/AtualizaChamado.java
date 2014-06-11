@@ -48,7 +48,7 @@ public class AtualizaChamado extends HttpServlet {
 			SgcDao dao = new SgcDao();
 			dao.AlteraChamado(cmd);
 			out.println("<script>alert(' Chamado Alterado.');</script>");
-			out.println("<script>window.location.assign('inicio.jsp');</script>");
+			out.println("<script>window.location.assign('chamados.jsp');</script>");
 			// response.sendRedirect("inicio.jsp");
 
 		} catch (SQLException e) {

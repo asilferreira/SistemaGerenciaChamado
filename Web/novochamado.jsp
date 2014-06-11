@@ -61,11 +61,10 @@
 	<div id="container">
 		<div id="content">
 			<div class="middle-unique-col">
-				<h2>Formulario 1</h2>
-				<p>
+				<h3>
 					Funcionario
 					<%=usuariof%>
-				</p>
+				</h3>
 				<div id="formWrapper">
 					<form action="javascript:void(0)" method="post" name="abrechamado">
 						<fieldset>

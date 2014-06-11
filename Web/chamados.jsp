@@ -30,9 +30,9 @@
 	<div id="container">
 		<div id="content">
 			<div class="middle-unique-col">
-				<h2>
+				<h3>
 					Funcionario:
-					<%=usuario%></h2>
+					<%=usuario%></h3>
 
 				<form action="" method="post" name="inicio">
 					<p>

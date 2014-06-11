@@ -56,7 +56,7 @@ public class CadastrarChamado extends HttpServlet {
 			dao.registraChamado(cmd);
 			int retorno = ex.retornaChamado(cmd.getIdChamado());
 			out.println("<script>alert(' Chamado número: "+retorno+" criado.');</script>");
-			out.println("<script>window.location.assign('inicio.jsp');</script>");
+			out.println("<script>window.location.assign('chamados.jsp');</script>");
 		//	response.sendRedirect("inicio.jsp");
 			
 		} catch (SQLException e) {
