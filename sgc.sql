@@ -3,7 +3,7 @@
 -- Server version:               5.5.27 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-05-29 15:03:13
+-- Date/time:                    2014-06-10 16:39:46
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,6 +14,16 @@
 DROP DATABASE IF EXISTS `sac`;
 CREATE DATABASE IF NOT EXISTS `sac` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `sac`;
+
+
+-- Dumping structure for procedure sac.ABERTOS
+DROP PROCEDURE IF EXISTS `ABERTOS`;
+DELIMITER //
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `ABERTOS`()
+BEGIN
+select id, USUARIO, EMAIL, RAMAL, SERVICO, GRUPO, SLA from v_union where STA = 1 ORDER BY IDSLA;
+END//
+DELIMITER ;
 
 
 -- Dumping structure for table sac.ab_chamado
@@ -27,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `ab_chamado` (
   `descricao_chamado` varchar(200) DEFAULT NULL,
   `data_abrt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `data_finlz` timestamp NULL DEFAULT NULL,
+  `datasusini` timestamp NULL DEFAULT NULL,
+  `datasusfim` timestamp NULL DEFAULT NULL,
   `sta` int(11) DEFAULT '1',
   `detalhe_causa` varchar(100) DEFAULT NULL,
   `solucao_resposta` varchar(100) DEFAULT NULL,
@@ -37,31 +49,34 @@ CREATE TABLE IF NOT EXISTS `ab_chamado` (
   KEY `serv_fk` (`Id_servico`),
   KEY `GRUP_FK` (`Id_grupo`),
   KEY `sta` (`sta`),
-  CONSTRAINT `STA_fk` FOREIGN KEY (`sta`) REFERENCES `estado_chamado` (`id_sta`),
   CONSTRAINT `func_fk` FOREIGN KEY (`Id_funcionario`) REFERENCES `funcionario` (`Id_funcionario`),
   CONSTRAINT `GRUP_FK` FOREIGN KEY (`Id_grupo`) REFERENCES `grupo` (`Id_grupo`),
   CONSTRAINT `serv_fk` FOREIGN KEY (`Id_servico`) REFERENCES `servico` (`Id_servico`),
+  CONSTRAINT `STA_fk` FOREIGN KEY (`sta`) REFERENCES `estado_chamado` (`id_sta`),
   CONSTRAINT `usu_fk` FOREIGN KEY (`Id_usuario`) REFERENCES `funcionario` (`Id_funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Dumping data for table sac.ab_chamado: ~12 rows (approximately)
+-- Dumping data for table sac.ab_chamado: ~17 rows (approximately)
 DELETE FROM `ab_chamado`;
 /*!40000 ALTER TABLE `ab_chamado` DISABLE KEYS */;
-INSERT INTO `ab_chamado` (`Id_chamado`, `Id_funcionario`, `Id_usuario`, `Id_servico`, `Id_grupo`, `descricao_chamado`, `data_abrt`, `data_finlz`, `sta`, `detalhe_causa`, `solucao_resposta`, `Id_tecsolucionador`) VALUES
-	(1, 1, 2, 2, 1, 'Usuário solicita a configuração do perfil no winmdows', '2014-05-10 00:00:00', '2014-05-29 00:00:00', 2, 'teste de data', 'testando', 1),
-	(2, 1, 3, 1, 2, 'Usuário não recebe nem envia e-mails', '2014-05-12 00:00:00', '2014-05-12 00:00:00', 2, 'Servidor desconfigurado no cliente de e-mail', 'O servidor de e-mail foi configurado no cliente outlook.', NULL),
-	(3, 1, 3, 1, 1, 'teste', '2014-05-14 19:54:32', '2014-05-14 20:00:00', 2, 'teste 4', 'teste 4', 1),
-	(4, 4, 3, 1, 2, 'teste de query', '2014-05-21 08:08:51', '2014-05-29 00:00:00', 2, '', '', 1),
-	(7, 1, 3, 3, 2, 'teste', '2014-05-25 08:03:22', '2014-05-25 08:03:22', 1, ' ', ' ', 1),
-	(8, 1, 3, 3, 1, 'teste2', '2014-05-25 08:06:41', '2014-05-25 08:06:41', 1, ' ', ' ', 1),
-	(13, 1, 2, 2, 1, 'teste', '2014-05-25 09:57:03', '2014-05-29 14:34:44', 1, '', '', 1),
-	(15, 1, 2, 2, 1, 'Teste 5				', '2014-05-25 10:05:18', '2014-05-25 10:05:18', 1, '', '', 1),
-	(16, 1, 2, 2, 1, 'Teste 5				', '2014-05-25 10:06:30', '2014-05-25 10:06:30', 1, '', '', 1),
-	(17, 1, 2, 3, 1, 'Instalar office com visio			', '2014-05-25 10:07:14', '2014-05-25 10:07:14', 1, '', '', 1),
-	(18, 1, 4, 3, 1, 'Instalar o dreamweaver					', '2014-05-25 16:18:40', '2014-05-25 16:18:40', 1, '', '', 1),
-	(19, 1, 2, 3, 1, 'instalar office.					', '2014-05-29 08:39:18', NULL, 2, 'era necessario instalar o access.', 'foi instalado com sucesso.', 1),
-	(20, 1, 4, 1, 1, 'Servidor de e-mail fora do ar	\r\nencaminhar para o terceiro nível...', '2014-05-29 14:36:48', NULL, 1, '', '', 1),
-	(21, 1, 2, 1, 3, 'Levantar servidor web.					', '2014-05-29 14:45:31', NULL, 1, '', '', 1);
+INSERT INTO `ab_chamado` (`Id_chamado`, `Id_funcionario`, `Id_usuario`, `Id_servico`, `Id_grupo`, `descricao_chamado`, `data_abrt`, `data_finlz`, `datasusini`, `datasusfim`, `sta`, `detalhe_causa`, `solucao_resposta`, `Id_tecsolucionador`) VALUES
+	(1, 1, 2, 2, 1, 'Usuário solicita a configuração do perfil no winmdows', '2014-05-10 00:00:00', '2014-05-29 00:00:00', NULL, NULL, 2, 'teste de data', 'testando', 1),
+	(2, 1, 3, 1, 2, 'Usuário não recebe nem envia e-mails', '2014-05-12 00:00:00', '2014-05-12 00:00:00', NULL, NULL, 2, 'Servidor desconfigurado no cliente de e-mail', 'O servidor de e-mail foi configurado no cliente outlook.', NULL),
+	(3, 1, 3, 1, 1, 'teste', '2014-05-14 19:54:32', '2014-05-14 20:00:00', NULL, NULL, 2, 'teste 4', 'teste 4', 1),
+	(4, 4, 3, 1, 2, 'teste de query', '2014-05-21 08:08:51', '2014-05-29 00:00:00', NULL, NULL, 2, '', '', 1),
+	(7, 1, 3, 3, 2, 'teste', '2014-05-25 08:03:22', '2014-05-25 08:03:22', NULL, NULL, 1, ' ', ' ', 1),
+	(8, 1, 3, 3, 1, 'teste2', '2014-05-25 08:06:41', '2014-05-25 08:06:41', NULL, NULL, 1, ' ', ' ', 1),
+	(13, 1, 2, 2, 3, 'teste', '2014-05-25 09:57:03', '2014-06-04 20:44:34', NULL, NULL, 3, '', '', 1),
+	(15, 1, 2, 2, 1, 'Teste 5				', '2014-05-25 10:05:18', '2014-06-04 20:24:04', NULL, NULL, 1, '', '', 1),
+	(16, 1, 2, 2, 1, 'Teste 5				', '2014-05-25 10:06:30', '2014-05-25 10:06:30', NULL, NULL, 1, '', '', 1),
+	(17, 1, 2, 3, 1, 'Instalar office com visio			', '2014-05-25 10:07:14', '2014-05-25 10:07:14', NULL, NULL, 1, '', '', 1),
+	(18, 1, 4, 3, 1, 'Instalar o dreamweaver					', '2014-05-25 16:18:40', '2014-05-25 16:18:40', NULL, NULL, 3, '', '', 1),
+	(19, 1, 2, 3, 1, 'instalar office.					', '2014-05-29 08:39:18', NULL, NULL, NULL, 2, 'era necessario instalar o access.', 'foi instalado com sucesso.', 1),
+	(20, 1, 4, 1, 2, 'Servidor de e-mail fora do ar	\r\nencaminhar para o terceiro nível...', '2014-05-29 14:36:48', '2014-06-03 20:28:34', NULL, NULL, 2, '', '', 1),
+	(21, 1, 2, 1, 2, 'Levantar servidor web.					', '2014-05-29 14:45:31', '2014-06-03 20:20:05', NULL, NULL, 4, '', '', 1),
+	(22, 1, 2, 3, 1, 'teste					', '2014-06-03 19:41:27', '2014-06-03 19:43:14', NULL, NULL, 2, 'teste', 'teste', 1),
+	(23, 1, 2, 1, 3, 'TESTE DE FORMULARIO					', '2014-06-04 20:52:49', '2014-06-04 20:53:32', NULL, NULL, 3, '', '', 5),
+	(24, 1, 2, 1, 3, 'TESTE DE LAYOUT. TÁ FICANDO SHOW...			', '2014-06-06 19:13:36', '2014-06-06 19:29:17', NULL, NULL, 1, '', '', 1);
 /*!40000 ALTER TABLE `ab_chamado` ENABLE KEYS */;
 
 
@@ -99,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   PRIMARY KEY (`Id_funcionario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table sac.funcionario: ~4 rows (approximately)
+-- Dumping data for table sac.funcionario: ~7 rows (approximately)
 DELETE FROM `funcionario`;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
 INSERT INTO `funcionario` (`Id_funcionario`, `nome`, `email`, `telefone`, `ramal`, `setor`, `login`, `senha`, `perfil_acesso`) VALUES
@@ -124,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `func_grup` (
   CONSTRAINT `funcG2_fk` FOREIGN KEY (`id_grupo`) REFERENCES `grupo` (`Id_grupo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table sac.func_grup: ~5 rows (approximately)
+-- Dumping data for table sac.func_grup: ~9 rows (approximately)
 DELETE FROM `func_grup`;
 /*!40000 ALTER TABLE `func_grup` DISABLE KEYS */;
 INSERT INTO `func_grup` (`id_funcionario`, `id_grupo`) VALUES
@@ -159,6 +174,42 @@ INSERT INTO `grupo` (`Id_grupo`, `nome_grupo`, `sigla`, `descricao`) VALUES
 	(3, '3 Nível', 'N3', 'Nível de especialistas'),
 	(4, 'Usuário', 'USER', 'Cadastro default');
 /*!40000 ALTER TABLE `grupo` ENABLE KEYS */;
+
+
+-- Dumping structure for procedure sac.LISTAPORSOLUCAO
+DROP PROCEDURE IF EXISTS `LISTAPORSOLUCAO`;
+DELIMITER //
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `LISTAPORSOLUCAO`(IN `tecnico` INT)
+BEGIN
+select ID, FUNCIONARIO, SERVICO, GRUPO, DESCRICAO, CAUSA, SOLUCAO from v_union where tec = tecnico AND STA = 2;
+END//
+DELIMITER ;
+
+
+-- Dumping structure for procedure sac.LISTATOTAL
+DROP PROCEDURE IF EXISTS `LISTATOTAL`;
+DELIMITER //
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `LISTATOTAL`(IN `statuss` int)
+begin
+select grupo ,count(*) as total 
+from v_union 
+where sta = statuss 
+group by id_grupo;
+end//
+DELIMITER ;
+
+
+-- Dumping structure for procedure sac.PDATA
+DROP PROCEDURE IF EXISTS `PDATA`;
+DELIMITER //
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `pdata`()
+BEGIN
+SELECT ID, USUARIO, EMAIL, RAMAL, SERVICO, ESTADO, TIMEDIFF(FECHAMENTO, ABERTURA) DIFERENCA 
+FROM v_union 
+WHERE STA IN(1,3)
+ORDER BY DIFERENCA DESC;
+END//
+DELIMITER ;
 
 
 -- Dumping structure for table sac.servico
@@ -219,7 +270,8 @@ CREATE TABLE `v_func` (
 	`sta` INT(11) NULL DEFAULT '1',
 	`nome_sta` VARCHAR(40) NOT NULL COLLATE 'utf8_general_ci',
 	`detalhe_causa` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`solucao_resposta` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci'
+	`solucao_resposta` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`Id_tecsolucionador` INT(11) NULL DEFAULT NULL
 ) ENGINE=MyISAM;
 
 
@@ -255,7 +307,8 @@ CREATE TABLE `v_union` (
 	`Estado` VARCHAR(40) NOT NULL COLLATE 'utf8_general_ci',
 	`sta` INT(11) NULL DEFAULT '1',
 	`causa` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`solucao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci'
+	`solucao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`tec` INT(11) NULL DEFAULT NULL
 ) ENGINE=MyISAM;
 
 
@@ -290,7 +343,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_func` AS select
 		a.sta,
 		ec.nome_sta,
 		a.detalhe_causa,
-		a.solucao_resposta
+		a.solucao_resposta,
+		a.Id_tecsolucionador
 from		ab_chamado a 
 inner join	funcionario f 
 on a.Id_funcionario = f.Id_funcionario
@@ -334,7 +388,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_union` AS select
 		v1.nome_sta as Estado,
 		v1.sta,
 		v1.detalhe_causa as causa,
-		v1.solucao_resposta as solucao
+		v1.solucao_resposta as solucao,
+		v1.Id_tecsolucionador as tec
 from v_func v1 inner join v_usu v2
 on v1.id_chamado = v2.id_chamado ;
 
